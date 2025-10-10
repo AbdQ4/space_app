@@ -2,12 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 import 'package:space_app/controller/planet_selector.dart';
-import 'package:space_app/core/assets_manager.dart';
 import 'package:space_app/core/colors_manager.dart';
 import 'package:space_app/model/planet_model.dart';
 import 'package:space_app/view/details_screen.dart';
 import 'package:space_app/widgets/change_planet_button.dart';
 import 'package:space_app/widgets/custom_elevated_button.dart';
+import 'package:space_app/widgets/header.dart';
 
 class HomeScreen extends StatefulWidget {
   HomeScreen({super.key});
@@ -36,43 +36,12 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     final planetSelector = Provider.of<PlanetSelector>(context);
-
+    PlanetModel? planet;
     return Scaffold(
       body: Column(
         children: [
           // --- HEADER ---
-          SizedBox(
-            height: 250.h,
-            width: double.infinity,
-            child: Stack(
-              fit: StackFit.expand,
-              children: [
-                Image.asset(AssetsManager.appBarBackground, fit: BoxFit.cover),
-                Container(
-                  decoration: BoxDecoration(
-                    gradient: LinearGradient(
-                      colors: [
-                        ColorsManager.black.withOpacity(1),
-                        Colors.transparent,
-                      ],
-                      begin: Alignment.bottomCenter,
-                      end: Alignment.topCenter,
-                    ),
-                  ),
-                ),
-                Center(
-                  child: Text(
-                    "Explore",
-                    style: TextStyle(
-                      color: ColorsManager.white,
-                      fontSize: 20.sp,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                ),
-              ],
-            ),
-          ),
+          Header(title: "Explore"),
           Padding(
             padding: REdgeInsets.only(right: 40),
             child: Text(
@@ -97,13 +66,13 @@ class _HomeScreenState extends State<HomeScreen> {
                 planetSelector.selectPlanet(index);
               },
               itemBuilder: (context, index) {
-                final planet = PlanetModel.planets[index];
+                planet = PlanetModel.planets[index];
                 return AnimatedContainer(
                   duration: const Duration(milliseconds: 300),
                   margin: REdgeInsets.symmetric(horizontal: 10),
                   padding: REdgeInsets.all(12),
 
-                  child: Image.asset(planet.imagePath, fit: BoxFit.cover),
+                  child: Image.asset(planet!.imagePath, fit: BoxFit.cover),
                 );
               },
             ),
@@ -158,7 +127,11 @@ class _HomeScreenState extends State<HomeScreen> {
             child: CustomElevatedButton(
               title: "Explore",
               onPressed: () {
-                Navigator.pushNamed(context, DetailsScreen.routeName);
+                Navigator.pushNamed(
+                  context,
+                  DetailsScreen.routeName,
+                  arguments: planet,
+                );
               },
               subTitle:
                   PlanetModel.planets[planetSelector.selectedIndex].planetName,
