@@ -6,7 +6,7 @@ import 'package:space_app/view/intro_screen.dart';
 class RoutesManager {
   static Map<String, Widget Function(BuildContext)> appRoutes = {
     '/': (context) => IntroScreen(),
-    HomeScreen.routeName: (context) => const HomeScreen(),
-    DetailsScreen.routeName: (context) => const DetailsScreen(),
+    HomeScreen.routeName: (context) => HomeScreen(),
+    DetailsScreen.routeName: (context) => DetailsScreen(),
   };
 }
