@@ -5,7 +5,7 @@ class PlanetModel {
   final String title;
   final String about;
   final double distanceFromSun;
-  final double lenghtOfDay;
+  final double lengthOfDay;
   final double orbitalPeriod;
   final double radius;
   final String mass;
@@ -19,7 +19,7 @@ class PlanetModel {
     required this.title,
     required this.about,
     required this.distanceFromSun,
-    required this.lenghtOfDay,
+    required this.lengthOfDay,
     required this.orbitalPeriod,
     required this.radius,
     required this.mass,
@@ -36,7 +36,7 @@ class PlanetModel {
       about:
           "The Sun is the heart of our solar system — a giant sphere of glowing plasma that provides heat, light, and life to Earth. Its powerful gravity holds all planets in orbit, while nuclear fusion at its core releases enormous energy every second.",
       distanceFromSun: 0,
-      lenghtOfDay: 0,
+      lengthOfDay: 0,
       orbitalPeriod: 0,
       radius: 695700,
       mass: "1.989 × 10³⁰",
@@ -52,7 +52,7 @@ class PlanetModel {
       about:
           "Mercury is the closest planet to the Sun and the smallest in our solar system. It races around the Sun faster than any other planet, completing an orbit in just 88 days. Its surface is covered with craters, much like Earth's Moon.",
       distanceFromSun: 57909227,
-      lenghtOfDay: 1407.6,
+      lengthOfDay: 1407.6,
       orbitalPeriod: 0.24,
       radius: 2439.7,
       mass: "3.301 × 10²³",
@@ -68,7 +68,7 @@ class PlanetModel {
       about:
           "Venus is nearly the same size as Earth but covered in thick clouds of sulfuric acid and a dense carbon dioxide atmosphere. It traps heat in a runaway greenhouse effect, making it the hottest planet in our solar system.",
       distanceFromSun: 108209475,
-      lenghtOfDay: 5832.5,
+      lengthOfDay: 5832.5,
       orbitalPeriod: 0.62,
       radius: 6051.8,
       mass: "4.867 × 10²⁴",
@@ -84,7 +84,7 @@ class PlanetModel {
       about:
           "Earth is the only known planet to support life, with vast oceans, diverse climates, and a protective atmosphere. Its magnetic field shields it from harmful solar radiation while the Moon stabilizes its rotation.",
       distanceFromSun: 149598262,
-      lenghtOfDay: 24,
+      lengthOfDay: 24,
       orbitalPeriod: 1.0,
       radius: 6371,
       mass: "5.972 × 10²⁴",
@@ -100,7 +100,7 @@ class PlanetModel {
       about:
           "Mars is a cold, desert world with iron-rich soil giving it a reddish color. It has the largest volcano and canyon in the solar system, and evidence suggests it once had liquid water on its surface.",
       distanceFromSun: 227943824,
-      lenghtOfDay: 24.6,
+      lengthOfDay: 24.6,
       orbitalPeriod: 1.88,
       radius: 3389.5,
       mass: "6.417 × 10²³",
@@ -116,7 +116,7 @@ class PlanetModel {
       about:
           "Jupiter is the largest planet, a gas giant with swirling clouds and the Great Red Spot — a storm larger than Earth that has raged for centuries. It has more than 90 moons and immense magnetic fields.",
       distanceFromSun: 778340821,
-      lenghtOfDay: 9.9,
+      lengthOfDay: 9.9,
       orbitalPeriod: 11.86,
       radius: 69911,
       mass: "1.898 × 10²⁷",
@@ -132,7 +132,7 @@ class PlanetModel {
       about:
           "Saturn is famous for its beautiful rings made of ice and rock. It’s a massive gas giant with strong winds and dozens of moons — including Titan, which has a thick atmosphere and lakes of liquid methane.",
       distanceFromSun: 1426666422,
-      lenghtOfDay: 10.7,
+      lengthOfDay: 10.7,
       orbitalPeriod: 29.46,
       radius: 58232,
       mass: "5.683 × 10²⁶",
@@ -148,7 +148,7 @@ class PlanetModel {
       about:
           "Uranus rotates on its side, making its seasons last over 20 years each. It has a pale blue-green color due to methane gas in its atmosphere and is one of the coldest planets in the solar system.",
       distanceFromSun: 2870658186,
-      lenghtOfDay: 17.2,
+      lengthOfDay: 17.2,
       orbitalPeriod: 84.01,
       radius: 25362,
       mass: "8.681 × 10²⁵",
@@ -164,7 +164,7 @@ class PlanetModel {
       about:
           "Neptune is the farthest planet from the Sun, with deep blue clouds and the strongest winds in the solar system. Its storms can reach speeds over 2,000 km/h, and it has faint rings and 14 known moons.",
       distanceFromSun: 4498396441,
-      lenghtOfDay: 16.1,
+      lengthOfDay: 16.1,
       orbitalPeriod: 164.8,
       radius: 24622,
       mass: "1.024 × 10²⁶",

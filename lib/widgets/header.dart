@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:space_app/core/assets_manager.dart';
 import 'package:space_app/core/colors_manager.dart';
 
@@ -10,19 +9,24 @@ class Header extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final height = (MediaQuery.sizeOf(context).height * 0.28).clamp(
+      180.0,
+      260.0,
+    );
+
     return SizedBox(
-      height: 250.h,
+      height: height,
       width: double.infinity,
       child: Stack(
         fit: StackFit.expand,
         children: [
           Image.asset(AssetsManager.appBarBackground, fit: BoxFit.cover),
-          Container(
+          DecoratedBox(
             decoration: BoxDecoration(
               gradient: LinearGradient(
                 colors: [
-                  ColorsManager.black.withOpacity(1),
-                  Colors.transparent,
+                  ColorsManager.black,
+                  ColorsManager.black.withValues(alpha: 0),
                 ],
                 begin: Alignment.bottomCenter,
                 end: Alignment.topCenter,
@@ -32,10 +36,11 @@ class Header extends StatelessWidget {
           Center(
             child: Text(
               title,
-              style: TextStyle(
+              style: const TextStyle(
                 color: ColorsManager.white,
-                fontSize: 20.sp,
+                fontSize: 20,
                 fontWeight: FontWeight.bold,
+                letterSpacing: 0.5,
               ),
             ),
           ),

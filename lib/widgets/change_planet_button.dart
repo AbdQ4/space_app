@@ -9,7 +9,7 @@ class ChangePlanetButton extends StatelessWidget {
   });
 
   final IconData icon;
-  final VoidCallback onPressed;
+  final VoidCallback? onPressed;
 
   @override
   Widget build(BuildContext context) {
@@ -17,11 +17,14 @@ class ChangePlanetButton extends StatelessWidget {
       style: ElevatedButton.styleFrom(
         backgroundColor: ColorsManager.red,
         foregroundColor: ColorsManager.white,
-        shape: CircleBorder(),
-        alignment: Alignment.center,
+        disabledBackgroundColor: ColorsManager.red.withValues(alpha: 0.25),
+        disabledForegroundColor: ColorsManager.white.withValues(alpha: 0.4),
+        fixedSize: const Size.square(48),
+        padding: EdgeInsets.zero,
+        shape: const CircleBorder(),
       ),
       onPressed: onPressed,
-      child: Icon(icon, size: 24),
+      child: Icon(icon, size: 20),
     );
   }
 }

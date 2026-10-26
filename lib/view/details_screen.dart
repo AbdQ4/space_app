@@ -1,153 +1,172 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_3d_controller/flutter_3d_controller.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:space_app/core/colors_manager.dart';
 import 'package:space_app/model/planet_model.dart';
 import 'package:space_app/widgets/custom_elevated_button.dart';
 import 'package:space_app/widgets/header.dart';
 
-class DetailsScreen extends StatefulWidget {
+class DetailsScreen extends StatelessWidget {
   const DetailsScreen({super.key});
 
   static const String routeName = '/details';
 
   @override
-  State<DetailsScreen> createState() => _DetailsScreenState();
-}
-
-class _DetailsScreenState extends State<DetailsScreen> {
-  @override
   Widget build(BuildContext context) {
     final planet = ModalRoute.of(context)!.settings.arguments as PlanetModel;
 
     return Scaffold(
-      backgroundColor: ColorsManager.black,
-      body: SingleChildScrollView(
-        child: Padding(
-          padding: REdgeInsets.all(5.w),
-          child: Column(
-            children: [
-              Header(title: planet.planetName),
-              Padding(
-                padding: REdgeInsets.only(right: 60),
-                child: Text(
-                  planet.title,
-                  style: TextStyle(
-                    color: ColorsManager.white,
-                    fontSize: 24.sp,
-                    fontWeight: FontWeight.bold,
-                  ),
-                  textAlign: TextAlign.center,
-                ),
-              ),
-              SizedBox(height: 20.h),
-              SizedBox(
-                height: 300.h,
-                child: Flutter3DViewer(src: planet.modelPath),
-              ),
-              SizedBox(height: 20),
-              Padding(
-                padding: REdgeInsets.only(right: 260),
-                child: Text(
-                  "About",
-                  style: TextStyle(
-                    color: ColorsManager.white,
-                    fontSize: 24.sp,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-              ),
-              SizedBox(height: 10.h),
-              Padding(
-                padding: REdgeInsets.only(left: 20),
-                child: Text(
-                  planet.about,
-                  style: TextStyle(color: ColorsManager.white, fontSize: 16.sp),
-                ),
-              ),
-              SizedBox(height: 20.h),
-              Padding(
-                padding: REdgeInsets.only(right: 16),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      "Distance from Sun(KM) : ${planet.distanceFromSun}",
-                      style: TextStyle(
-                        color: ColorsManager.white,
-                        fontSize: 16.sp,
-                        fontWeight: FontWeight.bold,
+      body: SafeArea(
+        bottom: false,
+        child: ListView(
+          padding: const EdgeInsets.only(bottom: 24),
+          children: [
+            Header(title: planet.planetName),
+            Center(
+              child: ConstrainedBox(
+                constraints: const BoxConstraints(maxWidth: 600),
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 24),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        planet.title,
+                        style: const TextStyle(
+                          color: ColorsManager.white,
+                          fontSize: 24,
+                          height: 1.2,
+                          fontWeight: FontWeight.bold,
+                        ),
                       ),
-                    ),
-                    SizedBox(height: 10.h),
-                    Text(
-                      "Lenght of day(Hrs) : ${planet.lenghtOfDay}",
-                      style: TextStyle(
-                        color: ColorsManager.white,
-                        fontSize: 16.sp,
-                        fontWeight: FontWeight.bold,
+                      const SizedBox(height: 16),
+                      SizedBox(
+                        height: 300,
+                        child: Flutter3DViewer(src: planet.modelPath),
                       ),
-                    ),
-                    SizedBox(height: 10.h),
-                    Text(
-                      "Oribital Period : ${planet.orbitalPeriod}",
-                      style: TextStyle(
-                        color: ColorsManager.white,
-                        fontSize: 16.sp,
-                        fontWeight: FontWeight.bold,
+                      const SizedBox(height: 24),
+                      const Text(
+                        'About',
+                        style: TextStyle(
+                          color: ColorsManager.white,
+                          fontSize: 22,
+                          fontWeight: FontWeight.bold,
+                        ),
                       ),
-                    ),
-                    SizedBox(height: 10.h),
-                    Text(
-                      "Radius(KM) : ${planet.radius}",
-                      style: TextStyle(
-                        color: ColorsManager.white,
-                        fontSize: 16.sp,
-                        fontWeight: FontWeight.bold,
+                      const SizedBox(height: 8),
+                      Text(
+                        planet.about,
+                        style: TextStyle(
+                          color: ColorsManager.white.withValues(alpha: 0.82),
+                          fontSize: 16,
+                          height: 1.45,
+                        ),
                       ),
-                    ),
-                    SizedBox(height: 10.h),
-                    Text(
-                      "Mass(KG) : ${planet.mass}",
-                      style: TextStyle(
-                        color: ColorsManager.white,
-                        fontSize: 16.sp,
-                        fontWeight: FontWeight.bold,
+                      const SizedBox(height: 20),
+                      _PlanetFact(
+                        label: 'Distance from Sun',
+                        value: _formatValue(planet.distanceFromSun, 'km'),
                       ),
-                    ),
-                    SizedBox(height: 10.h),
-                    Text(
-                      "Gravity : ${planet.gravity}",
-                      style: TextStyle(
-                        color: ColorsManager.white,
-                        fontSize: 16.sp,
-                        fontWeight: FontWeight.bold,
+                      _PlanetFact(
+                        label: 'Length of day',
+                        value: _formatValue(planet.lengthOfDay, 'hours'),
                       ),
-                    ),
-                    SizedBox(height: 10.h),
-                    Text(
-                      "Surface Area(kM²) : ${planet.surfaceArea}",
-                      style: TextStyle(
-                        color: ColorsManager.white,
-                        fontSize: 16.sp,
-                        fontWeight: FontWeight.bold,
+                      _PlanetFact(
+                        label: 'Orbital period',
+                        value: _formatValue(
+                          planet.orbitalPeriod,
+                          planet.orbitalPeriod == 1
+                              ? 'Earth year'
+                              : 'Earth years',
+                        ),
                       ),
-                    ),
-                    SizedBox(height: 20.h),
-                    Padding(
-                      padding: REdgeInsets.only(bottom: 20),
-                      child: CustomElevatedButton(
-                        title: "Go Back",
+                      _PlanetFact(
+                        label: 'Radius',
+                        value: _formatValue(planet.radius, 'km'),
+                      ),
+                      _PlanetFact(label: 'Mass', value: '${planet.mass} kg'),
+                      _PlanetFact(
+                        label: 'Gravity',
+                        value: '${planet.gravity} m/s²',
+                      ),
+                      _PlanetFact(
+                        label: 'Surface area',
+                        value: '${planet.surfaceArea} km²',
+                      ),
+                      const SizedBox(height: 24),
+                      CustomElevatedButton(
+                        title: 'Go back',
                         onPressed: () => Navigator.pop(context),
                       ),
-                    ),
-                  ],
+                    ],
+                  ),
+                ),
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+String _formatValue(double value, String unit) {
+  if (value == 0) return '—';
+  final number = value == value.roundToDouble()
+      ? value.round().toString().replaceAllMapped(
+          RegExp(r'\B(?=(\d{3})+(?!\d))'),
+          (_) => ',',
+        )
+      : value.toString();
+  return '$number $unit';
+}
+
+class _PlanetFact extends StatelessWidget {
+  const _PlanetFact({required this.label, required this.value});
+
+  final String label;
+  final String value;
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        Padding(
+          padding: const EdgeInsets.symmetric(vertical: 10),
+          child: Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Expanded(
+                flex: 4,
+                child: Text(
+                  label,
+                  style: TextStyle(
+                    color: ColorsManager.white.withValues(alpha: 0.6),
+                    fontSize: 15,
+                  ),
+                ),
+              ),
+              const SizedBox(width: 12),
+              Expanded(
+                flex: 5,
+                child: Text(
+                  value,
+                  textAlign: TextAlign.right,
+                  style: const TextStyle(
+                    color: ColorsManager.white,
+                    fontSize: 15,
+                    fontWeight: FontWeight.w600,
+                  ),
                 ),
               ),
             ],
           ),
         ),
-      ),
+        Divider(
+          height: 1,
+          thickness: 1,
+          color: ColorsManager.white.withValues(alpha: 0.08),
+        ),
+      ],
     );
   }
 }

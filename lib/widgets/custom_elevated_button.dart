@@ -1,38 +1,46 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:space_app/core/colors_manager.dart';
 
-// ignore: must_be_immutable
 class CustomElevatedButton extends StatelessWidget {
-  CustomElevatedButton({
+  const CustomElevatedButton({
     super.key,
     required this.title,
     required this.onPressed,
-    this.subTitle = "",
+    this.subTitle = '',
   });
 
   final String title;
-  String subTitle;
+  final String subTitle;
   final VoidCallback onPressed;
 
   @override
   Widget build(BuildContext context) {
-    return ElevatedButton(
-      style: ElevatedButton.styleFrom(
-        backgroundColor: ColorsManager.red,
-        foregroundColor: ColorsManager.white,
-        fixedSize: Size(342.w, 60.h),
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(16.r),
+    return SizedBox(
+      height: 56,
+      child: ElevatedButton(
+        style: ElevatedButton.styleFrom(
+          backgroundColor: ColorsManager.red,
+          foregroundColor: ColorsManager.white,
+          padding: const EdgeInsets.symmetric(horizontal: 20),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(16),
+          ),
         ),
-      ),
-      onPressed: onPressed,
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Text("$title $subTitle", style: TextStyle(fontSize: 20.sp)),
-          Icon(Icons.arrow_forward_ios, size: 22.sp),
-        ],
+        onPressed: onPressed,
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Flexible(
+              child: Text(
+                '$title $subTitle'.trim(),
+                overflow: TextOverflow.ellipsis,
+                style: const TextStyle(fontSize: 18),
+              ),
+            ),
+            const SizedBox(width: 12),
+            const Icon(Icons.arrow_forward_ios, size: 20),
+          ],
+        ),
       ),
     );
   }

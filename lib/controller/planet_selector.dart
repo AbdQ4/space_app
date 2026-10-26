@@ -7,21 +7,9 @@ class PlanetSelector extends ChangeNotifier {
   int get selectedIndex => _selectedIndex;
 
   void selectPlanet(int index) {
+    if (index < 0 || index >= PlanetModel.planets.length) return;
+    if (index == _selectedIndex) return;
     _selectedIndex = index;
     notifyListeners();
-  }
-
-  void nextPlanet(int index) {
-    if (selectedIndex < PlanetModel.planets.length - 1) {
-      _selectedIndex++;
-      notifyListeners();
-    }
-  }
-
-  void previosPlanet(int index) {
-    if (_selectedIndex > 0) {
-      _selectedIndex--;
-      notifyListeners();
-    }
   }
 }
