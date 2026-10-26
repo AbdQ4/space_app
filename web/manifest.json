@@ -1,11 +1,11 @@
 {
-    "name": "space_app",
-    "short_name": "space_app",
+    "name": "Space Explorer",
+    "short_name": "Space Explorer",
     "start_url": ".",
     "display": "standalone",
-    "background_color": "#0175C2",
-    "theme_color": "#0175C2",
-    "description": "A new Flutter project.",
+    "background_color": "#0E0E0E",
+    "theme_color": "#0E0E0E",
+    "description": "An interactive 3D guide to the solar system.",
     "orientation": "portrait-primary",
     "prefer_related_applications": false,
     "icons": [
